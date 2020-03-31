@@ -1,0 +1,4 @@
+rx
+kafka-python
+requests
+python-geohash
