@@ -45,7 +45,7 @@ def gen_temperature_readings(observer, scheduler):
         lon = rnd.uniform(W,E)
         geohash = gh.encode(lat,lon)
         sensor_id = f's{str(randint(0,20)).zfill(6)}'
-        value = AVG_TEMP + (4 * sin(time.time()/3600.)) + rnd.uniform(0, 1)
+        value = AVG_TEMP + (4 * sin(time.time()/14400.)) + rnd.uniform(0, 1)
         unit = 'c'
         temp_obj = {
             "timestamp": ts,
