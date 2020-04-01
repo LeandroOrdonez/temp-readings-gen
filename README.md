@@ -1,6 +1,6 @@
 # Mocking temperature sensor data generator
 
-This project generates synthetic sensor readings of geolocated temperature data, and post each record to a `Kafka` topic. The readings generated follow the format specified in the sample records below:
+This project generates synthetic sensor readings of geolocated temperature data, and posts each record to a `Kafka` topic. The readings generated follow the format specified in the sample records below:
 
 ```
 {"timestamp": 1585054952527, "geohash": "u155mz82dv33", "sensorId":"s000001", "temp_val": 20.3, "temp_unit": "c"} 
@@ -12,13 +12,13 @@ This project generates synthetic sensor readings of geolocated temperature data,
 
 ## Usage
 
-At least one running instance of `Kafka` and `Zookeeper` are required for the generator script to run. Optionally, we provide a `docker-compose` file for deploying a testing `Kafka` environment in your local machine. To use it, run:
+At least one running instance of `Kafka` and `Zookeeper` are required for the generator script to run. Optionally, we provide a `docker-compose` file for deploying a testing `Kafka` environment in your local machine (based on the `wurstmeister`'s [kafka-docker](https://github.com/wurstmeister/kafka-docker/blob/master/docker-compose-single-broker.yml) deployment). To use it, run:
 
 ```
 docker-compose -f docker-compose-kafka.yml up -d
 ```
 
-Once this environment is up, you can spawn the Docker container where the generator script is going to run, and optionally specifying some environment variables, such as the bounding box (`BBOX`) within which the temperature readings are going to be located (as a comma-separated sequence of coordinates: `<north>,<west>,<south>,<easth>`), as well as the minimum (`MIN_TEMP`) and maximum (`MAX_TEMP`) values the temperature readings can take (in Celsius degrees):
+Once this environment is up, you can spawn the Docker container where the generator script is going to run, and optionally specify some environment variables, such as the bounding box (`BBOX`) within which the temperature readings are going to be located (as a comma-separated sequence of coordinates: `<north>,<west>,<south>,<easth>`), as well as the minimum (`MIN_TEMP`) and maximum (`MAX_TEMP`) values the temperature readings can take (in Celsius degrees):
 
 ```
 docker run -it \
@@ -34,7 +34,7 @@ docker run -it \
 
 In case you already have a running `Kafka` setup, omit the `--network="host"` argument, and set the correspondent url (or urls) to the `KAFKA_BROKER` environment variable.
 
-Now you should be able to consume the readings from the `temperature-readings` topic by accessing the `Kafka` Docker container (or by `ssh` into the broker of your existing `Kafka` setup) and running the following command:
+Now you should be able to consume the readings being posted to the `temperature-readings` topic. You can test this by accessing the `Kafka` Docker container (or by `ssh` into the broker of your existing `Kafka` setup) and running the following command:
 
 ```
 kafka-console-consumer.sh \
