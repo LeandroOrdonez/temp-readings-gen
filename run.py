@@ -13,6 +13,7 @@ import time
 from random import randint
 import random as rnd
 import geohash as gh
+from math import sin
 
 class GracefulKiller:
   kill_now = False
@@ -25,14 +26,12 @@ class GracefulKiller:
 
 parser = argparse.ArgumentParser(description='Random temperature data generator.', prog='temp-gen', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 parser.add_argument('--bbox', default='51.32288838086245,4.091720581054688,51.1509246836981,4.752960205078125', help='N,W,S,E coordinates of the bounding box inside which observations are going to be generated')
-parser.add_argument('--maxTemp', default='50.0', help='Maximum value for the temperature readings')
-parser.add_argument('--minTemp', default='5.0', help='Minimum value for the temperature readings')
+parser.add_argument('--avgTemp', default='19.0', help='Reference temperature value. generated values would oscilate around this value.')
 parser.add_argument('--seed', default='0.0', help='Random seed (for reproducibility)')
 args = vars(parser.parse_args())
 
 N,W,S,E = [float(coord) for coord in args['bbox'].split(',')]
-MAX_TEMP = float(args['maxTemp'])
-MIN_TEMP = float(args['minTemp'])
+AVG_TEMP = float(args['avgTemp'])
 RND_SEED = float(args['seed'])
 
 rnd.seed(RND_SEED)
@@ -46,7 +45,7 @@ def gen_temperature_readings(observer, scheduler):
         lon = rnd.uniform(W,E)
         geohash = gh.encode(lat,lon)
         sensor_id = f's{str(randint(0,20)).zfill(6)}'
-        value = rnd.uniform(MIN_TEMP, MAX_TEMP)
+        value = AVG_TEMP + (4 * sin(time.time()/3600.)) + rnd.uniform(0, 1)
         unit = 'c'
         temp_obj = {
             "timestamp": ts,
