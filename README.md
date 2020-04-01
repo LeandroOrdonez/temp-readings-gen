@@ -18,7 +18,7 @@ At least one running instance of `Kafka` and `Zookeeper` are required for the ge
 docker-compose -f docker-compose-kafka.yml up -d
 ```
 
-Once this environment is up, you can spawn the Docker container where the generator script is going to run, and optionally specify some environment variables, such as the bounding box (`BBOX`) within which the temperature readings are going to be located (as a comma-separated sequence of coordinates: `<north>,<west>,<south>,<easth>`), as well as the minimum (`MIN_TEMP`) and a reference temperature value (`AVG_TEMP`) the generate readings are going to oscillate around (in Celsius degrees):
+Once this environment is up, you can spawn the Docker container where the generator script is going to run, and optionally specify some environment variables, such as the bounding box (`BBOX`) within which the temperature readings are going to be located (as a comma-separated sequence of coordinates: `<north>,<west>,<south>,<easth>`), as well as a reference temperature value (`AVG_TEMP`) the generated readings are going to oscillate around (in Celsius degrees):
 
 ```
 docker run -it \
