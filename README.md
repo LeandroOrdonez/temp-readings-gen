@@ -3,11 +3,11 @@
 This project generates synthetic sensor readings of geolocated temperature data, and posts each record to a `Kafka` topic. The readings generated follow the format specified in the sample records below:
 
 ```
-{"timestamp": 1585054952527, "geohash": "u155mz82dv33", "sensorId":"s000001", "temp_val": 20.3, "temp_unit": "c"} 
-{"timestamp": 1585080280353, "geohash": "u155krxynu5s", "sensorId":"s000002", "temp_val": 19.7, "temp_unit": "c"}
-{"timestamp": 1585080335267, "geohash": "u155mz827m6q", "sensorId":"s000010", "temp_val": 24.6, "temp_unit": "c"}
-{"timestamp": 1585080366564, "geohash": "u155krxynuhu", "sensorId":"s000007", "temp_val": 17.2, "temp_unit": "c"}
-{"timestamp": 1585080388268, "geohash": "u155mz827v2n", "sensorId":"s000004", "temp_val": 22.2, "temp_unit": "c"}
+{"timestamp": 1585054952527, "geohash": "u155mz82dv33", "sensorId":"s000001", "tempVal": 20.3, "tempUnit": "c"} 
+{"timestamp": 1585080280353, "geohash": "u155krxynu5s", "sensorId":"s000002", "tempVal": 19.7, "tempUnit": "c"}
+{"timestamp": 1585080335267, "geohash": "u155mz827m6q", "sensorId":"s000010", "tempVal": 24.6, "tempUnit": "c"}
+{"timestamp": 1585080366564, "geohash": "u155krxynuhu", "sensorId":"s000007", "tempVal": 17.2, "tempUnit": "c"}
+{"timestamp": 1585080388268, "geohash": "u155mz827v2n", "sensorId":"s000004", "tempVal": 22.2, "tempUnit": "c"}
 ```
 
 ## Usage

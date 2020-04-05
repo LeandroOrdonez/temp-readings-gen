@@ -51,8 +51,8 @@ def gen_temperature_readings(observer, scheduler):
             "timestamp": ts,
             "geohash": geohash,
             "sensorId": sensor_id,
-            "temp_val": value,
-            "temp_unit": unit
+            "tempVal": value,
+            "tempUnit": unit
         }
         print(f"generate temp reading {temp_obj}...")
         observer.on_next(temp_obj)
